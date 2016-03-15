@@ -41,8 +41,12 @@ public class MainActivity extends Activity {
         mLayoutManager = new LinearLayoutManager(this);
         mCardListRecyclerView.setLayoutManager(mLayoutManager);
         mCardListRecyclerView.setHasFixedSize(true);
-        // mAsyncHttpTask = new AsyncHttpTask();
-        // mAsyncHttpTask.execute(URL);
+        mAsyncHttpTask = new AsyncHttpTask();
+        mAsyncHttpTask.execute(URL);
+        // setStaticData();
+    }
+
+    private void setStaticData() {
         mCardList = new ArrayList<CardItem>();
         CardItem[] cardItems = new CardItem[10];
         for (int i = 0; i < cardItems.length; i++) {
@@ -112,7 +116,7 @@ public class MainActivity extends Activity {
     private void parseResponse(String response) {
         try {
             JSONObject responseJsonObject = new JSONObject(response);
-            JSONArray posts = responseJsonObject.optJSONArray("attachments");
+            JSONArray posts = responseJsonObject.optJSONArray("posts");
             if (mCardList == null) {
                 mCardList = new ArrayList<CardItem>();
             }
